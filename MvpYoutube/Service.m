@@ -11,9 +11,14 @@
 @implementation Service
 + (id) instance {
     
+    static Service *sharedInstance = nil;
+    @synchronized (self) {
+        if (sharedInstance == nil) {
+            sharedInstance = [[self alloc]init];
+        }
+    }
 
-
-    return self;
+    return sharedInstance;
 }
 
 
